@@ -240,3 +240,120 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Pop-up com Balão de Fala</title>
+    <style>
+        /* Inicialmente, o botão está oculto */
+        .popup {
+            display: none;
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            z-index: 5000;
+        }
+
+        /* Animação de pulsação */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Classe para adicionar a animação */
+        .pulse-animation {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        /* Balão de fala */
+        .balloon {
+            position: absolute;
+            bottom: 10px; /* Centraliza com o ícone */
+            right: 100%; /* Posiciona à esquerda do ícone */
+            margin-right: 10px; /* Espaço entre o balão e o ícone */
+            background: #f0f0f0;
+            color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.5s ease; /* Suaviza o desaparecimento */
+        }
+
+        /* Triângulo do balão */
+        .balloon::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #f0f0f0;
+        }
+
+        /* Ocultar o balão */
+        .hide-balloon {
+            opacity: 0;
+            pointer-events: none; /* Garante que o balão não seja clicável */
+        }
+    </style>
+    <script>
+        // Exibir o pop-up e o balão com animação após 5 segundos
+        window.onload = function () {
+            setTimeout(() => {
+                const popup = document.getElementById('whatsapp-popup');
+                const balloon = document.getElementById('popup-balloon');
+
+                // Exibe o botão com animação de pulsação
+                popup.style.display = 'block';
+                popup.classList.add('pulse-animation');
+
+                // Remove a animação após sua execução
+                setTimeout(() => {
+                    popup.classList.remove('pulse-animation');
+                }, 1500); // Duração da animação
+
+                // Exibe o balão de fala
+                balloon.style.display = 'block';
+
+                // Oculta o balão após 5 segundos
+                setTimeout(() => {
+                    balloon.classList.add('hide-balloon');
+                }, 5000); // 5000ms = 5 segundos
+            }, 5000); // 5000ms = 5 segundos para exibir o pop-up
+        };
+    </script>
+</head>
+<body>
+    <!-- Botão de WhatsApp -->
+    <div id="whatsapp-popup" class="popup">
+        <!-- Balão de Fala -->
+        <div id="popup-balloon" class="balloon">
+            Qualquer dúvida estamos por aqui!
+        </div>
+        <!-- Ícone do WhatsApp -->
+        <a href="https://api.whatsapp.com/send?phone=5511947034962&text=Ol%C3%A1,%20gostaria%20de%20fazer%20o%20teste"
+            target="_blank">
+            <img width="50" src="https://i.ibb.co/ZXw4vhk/Whatsapp.png" alt="WhatsApp Chat Icon" />
+        </a>
+    </div>
+</body>
+</html>
