@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCofe - Canais Ilimitados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #e50914;
+            --dark-overlay: rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            /* Imagem de Fundo conforme solicitado */
+            background-image: linear-gradient(to bottom, var(--dark-overlay), var(--dark-overlay)), url('https://i.ibb.co/bMdSC63J/Fundo.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #000;
+            
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header { margin-top: 30px; z-index: 10; }
+        .logo-text { font-weight: bold; font-size: 26px; color: white; margin-bottom: 5px; letter-spacing: -1px; }
+        .logo-text span { color: var(--primary-red); }
+        .badge-total { 
+            background: var(--primary-red); 
+            padding: 6px 15px; 
+            border-radius: 20px; 
+            font-size: 11px; 
+            font-weight: bold;
+            margin-bottom: 25px; 
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        /* --- TEXTOS --- */
+        h1 { font-size: 1.7rem; margin: 10px 15px; line-height: 1.1; text-transform: uppercase; font-weight: 900; }
+        h1 span { color: var(--primary-red); }
+
+        .price-label { font-size: 1.1rem; margin-top: 20px; opacity: 0.9; }
+        .price-tag { color: #2ecc71; font-size: 2.8rem; font-weight: bold; margin: 5px 0; }
+        .sub-text { font-size: 1.3rem; margin-bottom: 25px; font-weight: bold; }
+
+        /* --- BOTÕES CTA --- */
+        .btn-cta {
+            background: linear-gradient(to bottom, #ff0000, #990000);
+            color: white;
+            border: none;
+            padding: 18px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            width: 85%;
+            max-width: 380px;
+            margin: 25px 0;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+            transition: transform 0.2s;
+        }
+        .btn-cta:active { transform: scale(0.98); }
+
+        /* --- SLIDER 1 (CANAIS) --- */
+        #unique-slider { width: 100%; overflow: hidden; margin: 25px 0; }
+        .slider-container-ch { display: flex; overflow: hidden; width: 100%; }
+        .track-ch { display: flex; animation: scroll-ch 30s linear infinite; }
+        @keyframes scroll-ch { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .slide-ch { min-width: 80px; margin: 0 4px; }
+        .slide-ch img { width: 75px; height: 75px; border-radius: 22%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+
+        /* --- SLIDER 2 (FILMES) --- */
+        .slider-movies { width: 100%; overflow: hidden; margin: 15px 0; }
+        .row-movies { display: flex; width: 100%; overflow: hidden; margin-bottom: 8px; }
+        .track-mv-rev { display: flex; animation: scroll-rev 40s linear infinite; }
+        .track-mv-fwd { display: flex; animation: scroll-fwd 40s linear infinite; }
+        @keyframes scroll-rev { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        @keyframes scroll-fwd { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .slide-mv { min-width: 110px; margin: 0 3px; }
+        .slide-mv img { width: 108px; height: 155px; border-radius: 6px; object-fit: cover; }
+
+        /* LOGOS STREAMING */
+        .streaming-row { display: flex; justify-content: center; gap: 25px; margin: 15px 0; opacity: 0.7; }
+        .streaming-row img { height: 22px; filter: brightness(1.2); }
+
+        /* --- FAQ SECTION --- */
+        .faq-container { width: 90%; max-width: 450px; margin: 50px 0; text-align: left; }
+        .faq-header-title { text-align: center; font-size: 2.2rem; position: relative; margin-bottom: 40px; font-weight: 800; }
+        .faq-header-title span { opacity: 0.08; font-size: 5rem; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); width: 100%; z-index: -1; }
+        
+        details { background: rgba(30, 5, 5, 0.8); margin-bottom: 12px; border-radius: 6px; border: 1px solid rgba(255,0,0,0.1); backdrop-filter: blur(5px); }
+        summary { padding: 18px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; list-style: none; font-size: 13px; text-transform: uppercase; color: #eee; }
+        summary::after { content: '\f078'; font-family: 'Font Awesome 5 Free'; font-weight: 900; font-size: 12px; transition: 0.3s; color: var(--primary-red); }
+        details[open] summary::after { transform: rotate(180deg); }
+        .faq-ans { padding: 0 18px 18px; font-size: 14px; color: #bbb; line-height: 1.5; }
+
+        /* FOOTER */
+        .sup-24h { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 30px 0 10px; font-weight: bold; font-size: 18px; }
+        footer { margin: 30px 0; font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text"><span>X</span>Cofe • Canais ilimitados</div>
+        <div class="badge-total">Mais de 50 mil clientes ativos</div>
+    </header>
+
+    <h1>OBTENHA ACESSO ILIMITADO Á <span>CANAIS ABERTOS E FECHADOS</span></h1>
+
+    <div class="price-label">Por apenas</div>
+    <div class="price-tag">R$30/mês</div>
+    <div class="sub-text">Mais de 2.000 Canais</div>
+
+    <div id="unique-slider">
+        <div class="slider-container-ch">
+            <div class="track-ch">
+                <div class="slide-ch"><img src="https://i.ibb.co/4dHgpXr/1.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/YyKgS1V/2.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/WcygtDr/3.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/zVFbkLn/4.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/r3yN3TF/5.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/Fq0ZxfK/6.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/kBw3QLp/7.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/4dHgpXr/1.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/YyKgS1V/2.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/WcygtDr/3.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/zVFbkLn/4.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/r3yN3TF/5.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/Fq0ZxfK/6.png"></div>
+                <div class="slide-ch"><img src="https://i.ibb.co/kBw3QLp/7.png"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-text" style="padding: 0 25px; font-size: 1.1rem;">Mais de 100.000 Conteúdos das mais populares plataformas</div>
+
+    <div class="slider-movies">
+        <div class="row-movies">
+            <div class="track-mv-rev">
+                <div class="slide-mv"><img src="https://i.ibb.co/wgSLcQm/01.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/Bs7CbmS/02.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/JQzvWMh/03.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/KDJ04MT/04.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/tYCCcph/05.webp"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/wgSLcQm/01.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/Bs7CbmS/02.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/JQzvWMh/03.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/KDJ04MT/04.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/tYCCcph/05.webp"></div>
+            </div>
+        </div>
+        <div class="row-movies">
+            <div class="track-mv-fwd">
+                <div class="slide-mv"><img src="https://i.ibb.co/dQVqR3h/01.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/7dvRZsVJ/rebel-ridge.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/PDv3kt4/03.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/TBJQPgM/04.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/s350q8f/05.webp"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/dQVqR3h/01.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/7dvRZsVJ/rebel-ridge.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/PDv3kt4/03.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/TBJQPgM/04.jpg"></div>
+                <div class="slide-mv"><img src="https://i.ibb.co/s350q8f/05.webp"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="streaming-row">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Globoplay_logo.svg" alt="Globoplay">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg" alt="Prime Video">
+    </div>
+
+    <button class="btn-cta">Teste agora gratuitamente</button>
+
+    <div class="faq-container">
+        <div class="faq-header-title"><span>FAQ</span>Perguntas Frequentes</div>
+        
+        <details>
+            <summary>Precisa de internet para funcionar?</summary>
+            <div class="faq-ans">Sim, recomendamos uma conexão de pelo menos 10MB para uma experiência estável em HD e 4K.</div>
+        </details>
+
+        <details>
+            <summary>É necessário um especialista para configurar?</summary>
+            <div class="faq-ans">Não! Você recebe um acesso imediato e um passo a passo simples para instalar em sua Smart TV, Celular ou TV Box.</div>
+        </details>
+
+        <details>
+            <summary>O pagamento é mensal?</summary>
+            <div class="faq-ans">Sim, o plano é mensal e você pode cancelar quando quiser, sem qualquer tipo de multa ou fidelidade.</div>
+        </details>
+
+        <details>
+            <summary>Moro em zona rural, funciona pra mim?</summary>
+            <div class="faq-ans">Com certeza! Desde que você tenha uma conexão de internet (via satélite, rádio ou 4G/5G), o serviço funcionará perfeitamente.</div>
+        </details>
+
+        <details>
+            <summary>Quantos canais são liberados?</summary>
+            <div class="faq-ans">Todos! Premiere, Combate, HBO, Telecine, canais infantis, abertos e uma biblioteca com mais de 100 mil filmes e séries.</div>
+        </details>
+
+        <details>
+            <summary>Como vou receber?</summary>
+            <div class="faq-ans">Após a confirmação ou pedido do teste, os dados de acesso são enviados diretamente para o seu WhatsApp ou E-mail.</div>
+        </details>
+
+        <details>
+            <summary>Em quantos aparelhos posso usar?</summary>
+            <div class="faq-ans">Você pode instalar em quantos aparelhos quiser, porém a reprodução simultânea depende do plano escolhido.</div>
+        </details>
+    </div>
+
+    <button class="btn-cta">Teste agora gratuitamente</button>
+
+    <div class="sup-24h">
+        <i class="fab fa-whatsapp" style="color: #25d366; font-size: 24px;"></i>
+        Suporte 24h
+    </div>
+
+    <footer>
+        XCofe © 2025. Todos os direitos reservados.<br>
+        Termos de Uso | Políticas de Privacidade
+    </footer>
+
+</body>
+</html>
